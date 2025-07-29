@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lata AR MVP</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      model-viewer {
+        width: 100%;
+        max-width: 600px;
+        height: 60vh;
+        margin: 20px auto;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Experiência AR - Lata 3D</h1>
+    <p>Escolha o sabor:</p>
+
+    <button onclick="mudarModelo('sabor1')">Sabor 1</button>
+    <button onclick="mudarModelo('sabor2')">Sabor 2</button>
+    <button onclick="mudarModelo('sabor3')">Sabor 3</button>
+
+    <model-viewer
+      id="viewer"
+      src="https://www.dropbox.com/scl/fi/9iyymyabhqvf3fvny83up/sabor1.glb?rlkey=7jb9q2f8uyqbajt2339s9icwb&st=xpru0f0h&raw=1"
+      ar
+      ar-modes="scene-viewer webxr quick-look"
+      camera-controls
+      alt="Lata em AR"
+      ar-button="buttonAR"
+    >
+      <div slot="fallback">
+        Seu navegador não suporta AR. Tente usar um smartphone com Chrome ou Safari.
+      </div>
+    </model-viewer>
+
+    <button id="buttonAR">Ver em AR</button>
+
+    <script>
+      const urls = {
+        sabor1:
+          "https://www.dropbox.com/scl/fi/9iyymyabhqvf3fvny83up/sabor1.glb?rlkey=7jb9q2f8uyqbajt2339s9icwb&st=xpru0f0h&raw=1",
+        sabor2:
+          "https://www.dropbox.com/scl/fi/9akq9wlcmkzs5xkmbpa8d/sabor2.glb?rlkey=bbqyxoz4965uqegoxssrvx4y2&st=mttb3czn&raw=1",
+        sabor3:
+          "https://www.dropbox.com/scl/fi/a4s2q33try74zcfqhah2f/sabor3.glb?rlkey=jtsa77z4pmgurnovvh8bbfw48&st=q49o60vz&raw=1",
+      };
+
+      function mudarModelo(sabor) {
+        const viewer = document.getElementById("viewer");
+        viewer.src = urls[sabor];
+      }
+    </script>
+  </body>
+</html>
